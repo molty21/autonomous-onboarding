@@ -104,7 +104,7 @@ Pass the NWC URI to any NWC-compatible tool:
 | Create wallet | Free |
 | Maintenance | 1 sat/hour (24 sats/day) |
 | Minimum viable funding | ~25 sats (survives ~1 day) |
-| Agent bootstrap budget | ~100-500 sats (gives working room for a few days) |
+| Agent bootstrap budget | 10,000-20,000 sats (covers LNVPS 1 mo + LNEmail + PPQ) |
 
 ## Use Cases
 
@@ -113,11 +113,16 @@ Pass the NWC URI to any NWC-compatible tool:
 ```
 Parent Agent:
 1. curl -X POST https://lncurl.lol → get NWC URI
-2. Fund the lud16 address with 500 sats
+2. Fund the lud16 address with 10,000-20,000 sats
 3. Pass NWC URI to child agent as its wallet
 4. Child agent uses wallet for VPS (lnvps), email (lnemail), AI API (ppq)
 5. When child agent is done, wallet drains and self-destructs
 ```
+
+Typical costs for a bootstrapped child agent:
+- **LNVPS**: ~5,000-10,000 sats/month for VPS hosting
+- **LNEmail**: 1,000 sats/year for anonymous email
+- **PPQ**: Varies by usage (AI API tokens, ~$0.10-1.00 per session)
 
 ### Temporary Wallet for Testing
 
@@ -158,6 +163,7 @@ If you need to persist the wallet across sessions:
 - Backed by a single Alby Hub — not suitable for large amounts
 - Wallet deletion is **permanent** — no recovery after death
 - The `lud16` address stops working when the wallet dies
+- **No refunds** — if a wallet is funded and then depleted or deleted, the service fees are kept by lncurl.lol as operational costs
 - For production/long-term use, run your own Alby Hub: https://getalby.com/alby-hub
 
 ## References
